@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-west-2"
   access_key = "AKIAIOSFODNN7EXAMPLE4"
-  secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY4"
+  secret_key = os.Getenv("AWS_SECRET_KEY")  # SECRET REMOVED — rotate this credential immediately and load from environment variable or secrets manager
 }
 
 resource "aws_s3_bucket" "app_bucket" {
