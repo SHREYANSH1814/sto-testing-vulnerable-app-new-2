@@ -16,10 +16,12 @@ resource "aws_db_instance" "app_database" {
   instance_class       = "db.t2.micro"
   name                 = "vulnerable_app_db"
   username             = "admin"
-  password             = "insecure_database_password_123"  # Hardcoded password
+  # Remove hardcoded password to enforce IAM authentication
+  password             = null
   parameter_group_name = "default.mysql5.7"
   publicly_accessible  = true  # Insecure setting
   skip_final_snapshot  = true
+  iam_database_authentication_enabled = true
 }
 
 resource "aws_iam_access_key" "deploy_user_key" {
